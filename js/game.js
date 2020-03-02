@@ -17,38 +17,35 @@ class Game {
         },200);
 
         this.intervalIdWebs = setInterval(function(){
-            let rand = Math.floor(Math.random()*10)
-            if (rand > 1){
+            let rand = Math.floor(Math.random()*10);
+            if (rand > 4){
                 if (rand > 7) {
                     newGame.webs.push(new SpiderWeb(1,1));
                 } else {
-                    newGame.webs.push(new SpiderWeb(100,1));
-                }
-                
+                    newGame.webs.push(new SpiderWeb(60,1));
+                } 
             };
         },300);
 
         this.intervalIdFlowers = setInterval(function(){
-            let rand = Math.floor(Math.random()*10)
-            if (rand > 2){
+            let rand = Math.floor(Math.random()*10);
+            if (rand > 6){
                 if (rand > 8){
                     newGame.flowers.push(new Flowers(rand*10,1));
                 }else {
                     newGame.flowers.push(new Flowers(rand*10,1));
-                }
-                
+                }  
             };
         },350);
 
         this.intervalIdFans = setInterval(function(){
-            let rand = Math.floor(Math.random()*10)
-            if (rand > 2){
-                if (rand > 8) {
+            let rand = Math.floor(Math.random()*10);
+            if (rand > 7){
+                if (rand >= 8) {
                     newGame.fans.push(new Fan(1,1));
                 } else {
-                    newGame.fans.push(new Fan(100,1));
-                }
-                
+                    newGame.fans.push(new Fan(90,1));
+                }   
             };
         },400);
 
@@ -57,68 +54,89 @@ class Game {
     renderAll(){
         this.bee.renderBee();
 
+        let $websDiv = document.querySelector("#web");
+        $websDiv.innerHTML = ""
         for (let i=0; i<this.webs.length;i++){
             this.webs[i].renderWeb();  // check the scope of this!
-            if (this.webs.length > 0 && this.webs[i][1]<95){
-                this.webs[i].moveWeb("normal");
-            } else {
-                this.webs.splice(i,1);
-            }
-            
+            if (this.webs.length > 0) {
+                if (this.webs[i].position[1]<95){
+                    this.webs[i].moveWeb("normal");
+                } else {
+                    this.webs.splice(i,1);
+                }
+            } 
         }
 
+        let $flowersDiv = document.querySelector("#flower");
+        $flowersDiv.innerHTML = ""
         for (let i=0; i<this.flowers.length;i++){
             this.flowers[i].renderFlower();
-            if (this.flowers.length > 0 && this.webs[i][1]<95){
-                flower.moveFlower("normal");
-            } else {
-                this.flowers.splice(i,1);
-            }
-            
+            if (this.flowers.length > 0) {
+                if (this.flowers[i].position[1]<95){
+                    this.flowers.moveFlower("normal");
+                } else {
+                    this.flowers.splice(i,1);
+                }
+            } 
         }
         
+        let $fansDiv = document.querySelector("#fan");
+        $fansDiv.innerHTML = ""
         for (let i=0; i<this.fans.length;i++){
             this.fans[i].renderFans();
-            if (this.fans[i][1]<95){
-                this.fans.moveFans("normal");
-            } else {
-                this.fans.splice(i,1);
-            }
-            
-        }
-        
-        // this.fans.forEach((fan)=>{
-        //     fan.renderAC();
-        //     fan.moveAC("normal");
-        // });   
+            if (this.fans.length > 0) {
+                if (this.fans[i].position[1]<95){
+                    this.fans.moveFans("normal");
+                } else {
+                    this.fans.splice(i,1);
+                }
+            }  
+        } 
+
     }
 
-    slowDown(){
-        this.webs.forEach((web)=>{
-            web.moveWeb("slow");
-        });
+    slowDown() {
 
-        this.flowers.forEach((flower)=>{
-            flower.moveFlower("slow");
-        });
+        for (let i=0; i<this.webs.length;i++) {
+            if (this.webs.length > 0) {
+                web.moveWeb("slow");
+            }
+        }
 
-        this.fans.forEach((fan)=>{
-            fan.moveAC("slow");
-        })
+        for (let i=0; i<this.flowers.length;i++) {
+            if (this.flowers.length > 0) {
+                flower.moveFlower("slow");
+            }
+        }
+            
+        for (let i=0; i<this.fans.length;i++) {
+            if (this.fans.length > 0) {
+                fan.moveFans("slow");
+            }
+        }
+
     }
 
     accelerate(){
-        this.webs.forEach((web)=>{
-            web.moveWeb("fast");
-        });
 
-        this.flowers.forEach((flower)=>{
-            flower.moveFlower("fast");
-        });
+        for (let i=0; i<this.webs.length;i++) {
+            if (this.webs.length > 0) {
+                web.moveWeb("fast");
+            }
+        }
 
-        this.fans.forEach((fan)=>{
-            fan.moveAC("fast");
-        })
+        for (let i=0; i<this.flowers.length;i++) {
+            if (this.flowers.length > 0) {
+                flower.moveFlower("fast");
+            }
+        }
+
+        for (let i=0; i<this.fans.length;i++) {
+            if (this.fans.length > 0) {
+                fan.moveAC("fast");
+            }
+        }
+
     }
 
     stop(){

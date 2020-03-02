@@ -22,6 +22,9 @@ document.addEventListener("keydown", function(event){
             break;
         case "Enter":
             game.start();
+            let $section = document.querySelector("section");
+            let $beginMessage = $section.querySelector("h1");
+            $section.removeChild($beginMessage);
             console.log("Game started!");
             break;
         default:

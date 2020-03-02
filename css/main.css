@@ -3,11 +3,13 @@ body, html {
     padding: 0;
 }
 section {
+    position: relative;
     background-image: url('../images/summer-country-cottage.jpg');
-    width: 100vw;
-    height: 100vh;
+    width: 70vw;
+    height: 90vh;
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 0 auto;
 }
 
 div {
@@ -16,7 +18,7 @@ div {
 
 button {
     position: fixed;
-    top: 20%;
+    top: 60%;
     left: 45%;
     width: 120px;
     height: 50px;
@@ -30,8 +32,8 @@ button {
 
 #bee-img{
     position: fixed;
-    bottom: 30vh;
-    left: 50vw;
+    bottom: 15vh;
+    left: 43vw;
     width: 10%;
     height: auto;
 }
@@ -40,4 +42,50 @@ button {
     position: fixed;
 
 }
+
+#web, #flower, #fan {
+    position: relative;
+}
+
+#web {
+    width: 100%;
+    height: auto;
+}
+
+#flower {
+    width: 100%;
+    height: auto;
+}
+
+#fan {
+    width: 100%;
+    height: auto;
+}
+
+table, th, td {
+    padding: 10px 20px;
+    text-align: center;
+}
+
+tbody tr {
+    border-radius: 6px;
+    border-top: 2px dotted orangered;
+}
+
+#intro {
+    position: fixed;
+    top: 10vh;
+    left: 25vw;
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    background-color: rgba(242, 215, 144, 0.45);
+}
+
+
 
