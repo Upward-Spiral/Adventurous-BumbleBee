@@ -1,0 +1,43 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+section {
+    background-image: url('../images/summer-country-cottage.jpg');
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div {
+    position: relative;
+}
+
+button {
+    position: fixed;
+    top: 20%;
+    left: 45%;
+    width: 120px;
+    height: 50px;
+    
+}
+
+#bee {
+    position: relative;
+   
+}
+
+#bee-img{
+    position: fixed;
+    bottom: 30vh;
+    left: 50vw;
+    width: 10%;
+    height: auto;
+}
+
+.fixed-x {
+    position: fixed;
+
+}
+
