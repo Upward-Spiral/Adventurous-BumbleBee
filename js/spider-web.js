@@ -3,18 +3,19 @@ class SpiderWeb {
         this.position = [x,y];
         this.width = 10;
         this.height = 10;
+        this.speed = "normal";
     }
 
-    moveWeb(speed){
-        switch (speed) {
+    moveWeb(){
+        switch (this.speed) {
             case "fast":
-                this.position[1] += 5;
+                this.position[1] += 3;
                 break;
             case "slow":
-                this.position[1] -= 5;
+                this.position[1] -= 3;
                 break;
             default:
-                this.position[1] += 10;
+                this.position[1] += 5;
         }
          
     }
@@ -27,11 +28,11 @@ class SpiderWeb {
         let yvh = `${this.position[1]}vh`;
         $newWeb.style.top = yvh;
         $newWeb.style.left = xvw;
-        $newWeb.style.width = "40%";
-        $newWeb.style.height = "40%";
+        $newWeb.style.width = "20%";
+        $newWeb.style.height = "auto";
         $newWeb.style.position = "fixed";
         $section.appendChild($newWeb);
-        console.log(`web: ${this.position[0]} , ${this.position[1]}`);
+        // console.log(`web: ${this.position[0]} , ${this.position[1]}`);
     }
 
     getTorn(){

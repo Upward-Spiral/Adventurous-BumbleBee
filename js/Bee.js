@@ -10,14 +10,17 @@ class Bee {
     renderBee(){
         let bumbleBee = this;
         
+        
         if (bumbleBee.life>0){
+            
+            // if (beeNodePosition)
             let $bee = document.querySelector("#bee-img");
             let xvw = `${this.position[0]}vw`;
             let yvh = `${this.position[1]}vh`;
             $bee.style.bottom = yvh;
 
             $bee.style.left = xvw;
-            console.log(xvw,yvh);
+            // console.log(xvw,yvh);
         }
 
     }
