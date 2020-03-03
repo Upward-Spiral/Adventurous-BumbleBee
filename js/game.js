@@ -4,6 +4,7 @@ class Game {
         this.webs = [];
         this.flowers = [];
         this.fans = [];
+        this.evilWebIx = -1;
         this.intervalIdBee = 0;
         this.intervalIdWebs = 0;
         this.intervalIdFlowers = 0;
@@ -12,7 +13,14 @@ class Game {
     start(){
         var newGame = this;
         this.intervalIdBee = setInterval(function(){
-            newGame.renderAll();
+            if (newGame.bee.stuck == false) {
+                if (newGame.evilWebIx > -1) {
+                    newGame.webs.splice(newGame.evilWebIx,1);
+                }
+                newGame.renderAll();
+            } else {
+                newGame.bee.getStuck();
+            }
         },200);
 
         this.intervalIdWebs = setInterval(function(){
@@ -79,15 +87,21 @@ class Game {
 
     renderAll(){
         
-        if (this.collideBee(this.webs)) {
+        if (this.collideBee(this.webs) >= 0) {
+            this.evilWebIx = this.collideBee(this.webs);
             this.bee.stuck = true;
+            this.bee.stuckLevel = 10;            
         } else if (this.collideBee(this.flowers)) {
-            this.bee.feeding = true;
+            this.bee.feed();
         } else if (this.collideBee(this.fans)) {
             this.bee.life = 0;
         }
-        this.bee.renderBee();
-
+        if (this.bee.life > 0) {
+            this.bee.renderBee();
+        } else {
+            this.stop();
+        }
+        
         let $websDiv = document.querySelector("#web");
         $websDiv.innerHTML = ""
         for (let i=0; i<this.webs.length;i++){
@@ -134,12 +148,12 @@ class Game {
         let xBee = beeNodePosition[0];
         let yBee = beeNodePosition[1];
         for (let i=0;i<elements.length; i++){
-            if (xBee > elements[i].position[0] && 
-                xBee < elements[i].position[0]+10 && 
-                yBee < elements[i].position[1] &&
-                yBee > elements[i].position[1]-10 ) {
-                    return true;
-            };
+            if (xBee > elements[i].position[0] && xBee < elements[i].position[0]+25 && 
+                yBee > elements[i].position[1] && yBee < elements[i].position[1]+25 ) {
+                    return i;
+            } else {
+                return -1;
+            }
         };  
     }
 
@@ -158,47 +172,46 @@ class Game {
 
     slowDown() {
 
-        for (let i=0; i<this.webs.length;i++) {
-            if (this.webs.length > 0) {
-                web.moveWeb("slow");
-            }
-        }
-
-        for (let i=0; i<this.flowers.length;i++) {
-            if (this.flowers.length > 0) {
-                flower.moveFlower("slow");
-            }
-        }
+        if (this.webs.length > 0) {
+            for (let i=0; i<this.webs.length;i++) {
             
-        for (let i=0; i<this.fans.length;i++) {
-            if (this.fans.length > 0) {
-                fan.moveFans("slow");
+                this.webs[i].speed = "slow";
+            }
+        }
+        if (this.flowers.length > 0) {
+            for (let i=0; i<this.flowers.length;i++) {
+           
+                this.flowers[i].speed = "slow";
+            }
+        }
+        if (this.fans.length > 0) {    
+            for (let i=0; i<this.fans.length;i++) {
+            
+                this.fans[i].speed = "slow";
             }
         }
 
     }
 
-    // accelerate(){
+    accelerate(){
+        
+        if (this.webs.length > 0) {
+            for (let i=0; i<this.webs.length;i++) {
+                this.webs[i].speed = "fast";
+            }
+        }
+        if (this.flowers.length > 0) {
+            for (let i=0; i<this.flowers.length;i++) {
+                this.flowers[i].speed = "fast";
+            }
+        }
+        if (this.fans.length > 0) {
+            for (let i=0; i<this.fans.length;i++) {
+                this.fans[i].speed = "fast";
+            }
+        }
 
-    //     for (let i=0; i<this.webs.length;i++) {
-    //         if (this.webs.length > 0) {
-    //             web.moveWeb("fast");
-    //         }
-    //     }
-
-    //     for (let i=0; i<this.flowers.length;i++) {
-    //         if (this.flowers.length > 0) {
-    //             flower.moveFlower("fast");
-    //         }
-    //     }
-
-    //     for (let i=0; i<this.fans.length;i++) {
-    //         if (this.fans.length > 0) {
-    //             fan.moveAC("fast");
-    //         }
-    //     }
-
-    // }
+    }
 
     stop(){
         clearInterval(this.intervalIdBee);

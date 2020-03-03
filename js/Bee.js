@@ -1,24 +1,28 @@
 class Bee {
     constructor (){
-        this.position = [50,30];
+        this.position = [50,75];
         this.life = 100;
         this.stuck = false;
+        this.stuckLevel = 0 ;
         this.pushed = false;
         this.feeding = false;
+        this.stuckedIn = 0;
     }
     
     renderBee(){
         let bumbleBee = this;
-        
+        let $bee = document.querySelector("#bee-img");
+        if (bumbleBee.stuck) {
+            $bee.setAttribute("src","./images/bee3.gif");
+            console.log(`Zeebee is stuck! Stuck level = ${this.stuckLevel}`)
+        } else {
+            $bee.setAttribute("src","https://media.giphy.com/media/LSET97hcXZK9i/source.gif");
+        }
         
         if (bumbleBee.life>0){
-            
-            // if (beeNodePosition)
-            let $bee = document.querySelector("#bee-img");
             let xvw = `${this.position[0]}vw`;
             let yvh = `${this.position[1]}vh`;
-            $bee.style.bottom = yvh;
-
+            $bee.style.top = yvh; 
             $bee.style.left = xvw;
             // console.log(xvw,yvh);
         }
@@ -27,31 +31,46 @@ class Bee {
 
 
     resist(){
+        if (this.stuckLevel > 0) {
+            this.stuckLevel -= 2;
+            console.log(`Stuck Level = ${this.stuckLevel}`)
+        } else {
+            this.breakFree();
+        }
         
     }
 
+    getStuck(){
+            this.life -= 1;
+
+        }
+
     keepRight(){
-        this.position[0] += 2;
+        this.position[0] += 3;
     }
 
     keepLeft(){
-        this.position[0] -= 2;
+        this.position[0] -= 3;
     }
 
     feed(){
-
+        this.feeding = true;
+        this.life += 10;
     }
 
     getCrushed(){
-
+        this.life = 0;
     }
 
     getWounded(){
+        this.life -= 20;
 
     }
 
-    getStuck(){
-
+    breakFree(){
+        this.stuck = false;
+        
+        console.log("Zeebee is free!")
     }
 
 }

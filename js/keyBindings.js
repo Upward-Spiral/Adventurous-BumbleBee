@@ -18,7 +18,7 @@ document.addEventListener("keydown", function(event){
             break;
         case "Space":
             game.bee.resist();
-            // console.log("Resisting the wind!");
+            console.log("Resisting the wind!");
             break;
         case "Enter":
             game.start();

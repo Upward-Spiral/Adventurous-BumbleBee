@@ -9,10 +9,10 @@ class Flowers {
     moveFlower(){
         switch (this.speed) {
             case "fast":
-                this.position[1] += 3;
+                this.position[1] += 7;
                 break;
             case "slow":
-                this.position[1] -= 3;
+                this.position[1] += 3;
                 break;
             default:
                 this.position[1] += 5;
