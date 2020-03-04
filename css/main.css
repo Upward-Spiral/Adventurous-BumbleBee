@@ -9,7 +9,7 @@ section {
     height: 90vh;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 0 auto;
+    margin: 3% auto;
 }
 
 div {
@@ -32,7 +32,7 @@ button {
 
 #bee-img{
     position: fixed;
-    top: 85vh;
+    top: 70vh;
     left: 43vw;
     width: 10%;
     height: auto;
@@ -52,10 +52,10 @@ button {
     height: auto;
 }
 
-#flower {
+/* #flower {
     width: 70vw;
     height: auto;
-}
+} */
 
 #fan {
     width: 70vw;
@@ -74,7 +74,7 @@ tbody tr {
 
 #intro {
     position: fixed;
-    top: 10vh;
+    top: 15vh;
     left: 25vw;
     width: 50%;
     height: auto;

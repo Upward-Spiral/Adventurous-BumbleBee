@@ -1,8 +1,8 @@
 class Flowers {
-    constructor(x,y){
+    constructor(x,y,w){
         this.position = [x,y];
-        this.width = 50;
-        this.height = 50;
+        this.width = w;
+        this.height = 0;
         this.speed = "normal";
     }
 
@@ -21,6 +21,7 @@ class Flowers {
     }
 
     renderFlower(){
+        let realWidth = `${this.width}%`;
         let $section = document.querySelector("#flower")
         let $newFlower = document.createElement("img");
         $newFlower.src = "./images/flower.png";
@@ -28,10 +29,13 @@ class Flowers {
         let yvh = `${this.position[1]}vh`;
         $newFlower.style.top = yvh;
         $newFlower.style.left = xvw;
-        $newFlower.style.width = "15%";
+        $newFlower.style.width = realWidth;
         $newFlower.style.height = "auto";
         $newFlower.style.position = "fixed";
         $section.appendChild($newFlower);
+        let rh = window.getComputedStyle($newFlower,null).getPropertyValue("height");
+        let realHeight = Number (rh.slice(rh.length-1,2));
+        this.height = Math.floor((realHeight * 100)/(window.innerHeight));
         // console.log(`flower: ${this.position[0]} , ${this.position[1]}`);
     }
 

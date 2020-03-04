@@ -1,8 +1,8 @@
 class SpiderWeb {
-    constructor (x,y){
+    constructor (x,y,w){
         this.position = [x,y];
-        this.width = 10;
-        this.height = 10;
+        this.width = w;
+        this.height = 0;
         this.speed = "normal";
         // this.smashed = false;
     }
@@ -22,7 +22,8 @@ class SpiderWeb {
     }
 
     renderWeb(){
-        
+
+        let realWidth = `${this.width}%`;
         let $section = document.querySelector("#web")
         let $newWeb = document.createElement("img");
         $newWeb.src = "./images/spider-web.png";
@@ -30,10 +31,13 @@ class SpiderWeb {
         let yvh = `${this.position[1]}vh`;
         $newWeb.style.top = yvh;
         $newWeb.style.left = xvw;
-        $newWeb.style.width = "20%";
+        $newWeb.style.width = realWidth;
         $newWeb.style.height = "auto";
         $newWeb.style.position = "fixed";
         $section.appendChild($newWeb);
+        let rh = window.getComputedStyle($newWeb,null).getPropertyValue("height");
+        let realHeight = Number (rh.slice(rh.length-1,2));
+        this.height = Math.floor((realHeight * 100)/(window.innerHeight));
         // console.log(`web: ${this.position[0]} , ${this.position[1]}`);
         
     }

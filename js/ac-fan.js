@@ -20,6 +20,7 @@ class Fan {
     }
 
     renderFans(){
+
         let $section = document.querySelector("#fan")
         let $newFan = document.createElement("img");
         $newFan.src = "./images/fan.png";

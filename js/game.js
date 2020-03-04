@@ -16,6 +16,7 @@ class Game {
             if (newGame.bee.stuck == false) {
                 if (newGame.evilWebIx > -1) {
                     newGame.webs.splice(newGame.evilWebIx,1);
+                    newGame.evilWebIx = -1;
                 }
                 newGame.renderAll();
             } else {
@@ -34,9 +35,9 @@ class Game {
             if (newGame.flowers.length <= 1) {
                 if (randChance > 5){
                     if (rand2 == rand1) {
-                        newGame.webs.push(new SpiderWeb(rand1*10,-20));
+                        newGame.webs.push(new SpiderWeb(rand1*10,-20,newGame.giveRandNum(6)));
                     } else {
-                        newGame.webs.push(new SpiderWeb(rand1*10,-20));
+                        newGame.webs.push(new SpiderWeb(rand1*10,-20,newGame.giveRandNum(6)));
                     } 
                 };
             }
@@ -48,15 +49,15 @@ class Game {
             if (randNum < 2) {
                 randNum += 2;
             } 
-            let randChance = Math.floor(Math.random()*8);
+            let randChance = newGame.giveRandNum(8);
             let rand1 = Math.floor(randNum);
             let rand2 = Math.round(randNum);
             if (newGame.flowers.length <= 1) {
                 if (randChance > 6){
                     if (rand2 == rand1){
-                        newGame.flowers.push(new Flowers(rand1*10,-20));
+                        newGame.flowers.push(new Flowers(rand1*10,-20,newGame.giveRandNum(5)));
                     }else {
-                        newGame.flowers.push(new Flowers(rand1*10,-20));
+                        newGame.flowers.push(new Flowers(rand1*10,-20,newGame.giveRandNum(5)));
                     }  
                 };
             } 
@@ -91,10 +92,13 @@ class Game {
             this.evilWebIx = this.collideBee(this.webs);
             this.bee.stuck = true;
             this.bee.stuckLevel = 10;            
-        } else if (this.collideBee(this.flowers)) {
+        } else if (this.collideBee(this.flowers) >= 0) {
             this.bee.feed();
-        } else if (this.collideBee(this.fans)) {
+            console.log('Bee feed')
+         } 
+        else if (this.collideBee(this.fans) >= 0) {
             this.bee.life = 0;
+            console.log('Bee in the fan')
         }
         if (this.bee.life > 0) {
             this.bee.renderBee();
@@ -102,12 +106,13 @@ class Game {
             this.stop();
         }
         
+        // Renders Webs ----------------------
         let $websDiv = document.querySelector("#web");
         $websDiv.innerHTML = ""
         for (let i=0; i<this.webs.length;i++){
-            this.webs[i].renderWeb();  // check the scope of this!
+            this.webs[i].renderWeb(); 
             if (this.webs.length > 0) {
-                if (this.webs[i].position[1]<98){
+                if (this.webs[i].position[1]<95){
                     this.webs[i].moveWeb();
                 } else {
                     this.webs.splice(i,1);
@@ -115,12 +120,13 @@ class Game {
             };
         };
 
+        // Renders Flowers ---------------------
         let $flowersDiv = document.querySelector("#flower");
         $flowersDiv.innerHTML = ""
         for (let i=0; i<this.flowers.length;i++){
             this.flowers[i].renderFlower();
             if (this.flowers.length > 0) {
-                if (this.flowers[i].position[1]<98){
+                if (this.flowers[i].position[1]<95){
                     this.flowers[i].moveFlower();
                 } else {
                     this.flowers.splice(i,1);
@@ -128,12 +134,14 @@ class Game {
             }; 
         };
         
+
+        // Renders Fans ---------------------
         let $fansDiv = document.querySelector("#fan");
         $fansDiv.innerHTML = ""
         for (let i=0; i<this.fans.length;i++){
             this.fans[i].renderFans();
             if (this.fans.length > 0) {
-                if (this.fans[i].position[1]<98){
+                if (this.fans[i].position[1]<95){
                     this.fans[i].moveFans();
                 } else {
                     this.fans.splice(i,1);
@@ -143,18 +151,19 @@ class Game {
 
     }
 
-    collideBee (elements){
+    collideBee(elements){
         let beeNodePosition = [this.bee.position[0]+5,this.bee.position[1]+5];
         let xBee = beeNodePosition[0];
         let yBee = beeNodePosition[1];
+        let result = -1;
         for (let i=0;i<elements.length; i++){
-            if (xBee > elements[i].position[0] && xBee < elements[i].position[0]+25 && 
-                yBee > elements[i].position[1] && yBee < elements[i].position[1]+25 ) {
-                    return i;
-            } else {
-                return -1;
-            }
-        };  
+            
+            if (xBee > elements[i].position[0] && xBee < elements[i].position[0]+20 && 
+                yBee > elements[i].position[1] && yBee < elements[i].position[1]+webHeight ) {
+                    result = i;
+            } 
+        };
+        return result;    
     }
 
     pushedByWind(){
@@ -242,6 +251,11 @@ class Game {
         $beginMessage.innerHTML = "press Enter to start";
         $section.appendChild($beginMessage);
         
+    }
+
+    giveRandNum(num) {
+        let rand = Math.floor(Math.random()*num)
+        return rand;
     }
 
 }

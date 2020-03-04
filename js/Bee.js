@@ -39,6 +39,12 @@ class Bee {
         }
         
     }
+    
+    breakFree(){
+        this.stuck = false;
+        
+        console.log("Zeebee is free!")
+    }
 
     getStuck(){
             this.life -= 1;
@@ -67,10 +73,5 @@ class Bee {
 
     }
 
-    breakFree(){
-        this.stuck = false;
-        
-        console.log("Zeebee is free!")
-    }
-
+    
 }
