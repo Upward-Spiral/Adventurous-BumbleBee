@@ -1,6 +1,8 @@
 class Fan {
-    constructor(x,y){
+    constructor(x,y,w){
         this.position = [x,y];
+        this.width = w;
+        this.height = w;
         this.power = 2; // can have a value between 1 and 5
         this.speed = "normal";
     }
@@ -20,7 +22,8 @@ class Fan {
     }
 
     renderFans(){
-
+        
+        let realWidth = `${this.width}%`;
         let $section = document.querySelector("#fan")
         let $newFan = document.createElement("img");
         $newFan.src = "./images/fan.png";
@@ -28,7 +31,7 @@ class Fan {
         let yvh = `${this.position[1]}vh`;
         $newFan.style.top = yvh;
         $newFan.style.left = xvw;
-        $newFan.style.width = "20%";
+        $newFan.style.width = realWidth;
         $newFan.style.height = "auto";
         $newFan.style.position = "fixed";
         $section.appendChild($newFan);

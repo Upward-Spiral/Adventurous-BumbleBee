@@ -25,19 +25,26 @@ class Game {
         },200);
 
         this.intervalIdWebs = setInterval(function(){
-            let randNum = Math.random()*9;
-            if (randNum <2) {
-                randNum += 2;
-            } 
-            let randChance = Math.floor(Math.random()*8);
+            let randNum = Math.random()*100;
+            if (randNum < 20) {
+                randNum += 20;
+            } else if (randNum > 80) {
+                randNum -= 20;
+            }
+            let randChance = newGame.giveRandNum(1,10);;
             let rand1 = Math.floor(randNum);
             let rand2 = Math.round(randNum);
-            if (newGame.flowers.length <= 1) {
-                if (randChance > 5){
+            if (newGame.flowers.length <= 2) {
+                if (randChance > 7){
+                    let width = newGame.giveRandNum(10,20);
+                    if (rand1 > 85-width){
+                            rand1 = 85-width;
+                        }
                     if (rand2 == rand1) {
-                        newGame.webs.push(new SpiderWeb(rand1*10,-20,newGame.giveRandNum(6)));
+                        
+                        newGame.webs.push(new SpiderWeb(rand1,-20,width));
                     } else {
-                        newGame.webs.push(new SpiderWeb(rand1*10,-20,newGame.giveRandNum(6)));
+                        newGame.webs.push(new SpiderWeb(rand1,-20,width));
                     } 
                 };
             }
@@ -45,19 +52,25 @@ class Game {
         },600);
 
         this.intervalIdFlowers = setInterval(function(){
-            let randNum = Math.random()*8;
-            if (randNum < 2) {
-                randNum += 2;
-            } 
-            let randChance = newGame.giveRandNum(8);
+            let randNum = Math.random()*100;
+            if (randNum < 20) {
+                randNum += 20;
+            } else if (randNum > 80) {
+                randNum -= 20;
+            }
+            let randChance = newGame.giveRandNum(1,9);
             let rand1 = Math.floor(randNum);
             let rand2 = Math.round(randNum);
             if (newGame.flowers.length <= 1) {
                 if (randChance > 6){
+                    let width = newGame.giveRandNum(10,20);
+                    if (rand1 > 85-width){
+                            rand1 = 85-width;
+                        }
                     if (rand2 == rand1){
-                        newGame.flowers.push(new Flowers(rand1*10,-20,newGame.giveRandNum(5)));
+                        newGame.flowers.push(new Flowers(rand1,-20,width));
                     }else {
-                        newGame.flowers.push(new Flowers(rand1*10,-20,newGame.giveRandNum(5)));
+                        newGame.flowers.push(new Flowers(rand1,-20,width));
                     }  
                 };
             } 
@@ -69,15 +82,19 @@ class Game {
             if (randNum < 2) {
                 randNum += 2;
             } 
-            let randChance = Math.floor(Math.random()*8);
+            let randChance = newGame.giveRandNum(1,8);
             let rand1 = Math.floor(randNum);
             let rand2 = Math.round(randNum);
             if (newGame.fans.length == 0) {
                 if (rand1 > 6){
+                    let width = 15;
+                    if (rand1 > 85-width){
+                        rand1 = 85-width;
+                    }
                     if (rand2 == rand1) {
-                        newGame.fans.push(new Fan(40,-20));
+                        newGame.fans.push(new Fan(40,-20,15));
                     } else {
-                        newGame.fans.push(new Fan(70,-20));
+                        newGame.fans.push(new Fan(70,-20,15));
                     }   
                 };
             }
@@ -88,31 +105,13 @@ class Game {
 
     renderAll(){
         
-        if (this.collideBee(this.webs) >= 0) {
-            this.evilWebIx = this.collideBee(this.webs);
-            this.bee.stuck = true;
-            this.bee.stuckLevel = 10;            
-        } else if (this.collideBee(this.flowers) >= 0) {
-            this.bee.feed();
-            console.log('Bee feed')
-         } 
-        else if (this.collideBee(this.fans) >= 0) {
-            this.bee.life = 0;
-            console.log('Bee in the fan')
-        }
-        if (this.bee.life > 0) {
-            this.bee.renderBee();
-        } else {
-            this.stop();
-        }
-        
         // Renders Webs ----------------------
         let $websDiv = document.querySelector("#web");
         $websDiv.innerHTML = ""
         for (let i=0; i<this.webs.length;i++){
             this.webs[i].renderWeb(); 
             if (this.webs.length > 0) {
-                if (this.webs[i].position[1]<95){
+                if (this.webs[i].position[1]<(95-this.webs[i].height)){
                     this.webs[i].moveWeb();
                 } else {
                     this.webs.splice(i,1);
@@ -126,7 +125,7 @@ class Game {
         for (let i=0; i<this.flowers.length;i++){
             this.flowers[i].renderFlower();
             if (this.flowers.length > 0) {
-                if (this.flowers[i].position[1]<95){
+                if (this.flowers[i].position[1]<(95-this.flowers[i].height)){
                     this.flowers[i].moveFlower();
                 } else {
                     this.flowers.splice(i,1);
@@ -141,7 +140,7 @@ class Game {
         for (let i=0; i<this.fans.length;i++){
             this.fans[i].renderFans();
             if (this.fans.length > 0) {
-                if (this.fans[i].position[1]<95){
+                if (this.fans[i].position[1]<(95-this.fans[i].height)){
                     this.fans[i].moveFans();
                 } else {
                     this.fans.splice(i,1);
@@ -149,6 +148,23 @@ class Game {
             };
         }; 
 
+        if (this.collideBee(this.webs) >= 0) {
+            this.evilWebIx = this.collideBee(this.webs);
+            this.bee.stuck = true;
+            this.bee.stuckLevel = 10;            
+        } else if (this.collideBee(this.flowers) >= 0) {
+            this.bee.feed();
+            console.log('Bee feed')
+        } 
+        else if (this.collideBee(this.fans) >= 0) {
+            this.bee.life = 0;
+            console.log('Bee in the fan')
+        }
+        if (this.bee.life > 0) {
+            this.bee.renderBee();
+        } else {
+            this.stop();
+        }
     }
 
     collideBee(elements){
@@ -158,8 +174,8 @@ class Game {
         let result = -1;
         for (let i=0;i<elements.length; i++){
             
-            if (xBee > elements[i].position[0] && xBee < elements[i].position[0]+20 && 
-                yBee > elements[i].position[1] && yBee < elements[i].position[1]+webHeight ) {
+            if (xBee > elements[i].position[0] && xBee < elements[i].position[0]+(elements[i].width -2) && 
+                yBee > elements[i].position[1] && yBee < elements[i].position[1]+(elements[i].height -2) ) {
                     result = i;
             } 
         };
@@ -253,8 +269,11 @@ class Game {
         
     }
 
-    giveRandNum(num) {
-        let rand = Math.floor(Math.random()*num)
+    giveRandNum(min,max) {
+        let rand = Math.floor(Math.random()*max);
+        if (rand < min) {
+            rand += min;
+        }
         return rand;
     }
 

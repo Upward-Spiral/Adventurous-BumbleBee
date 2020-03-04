@@ -2,9 +2,9 @@ class SpiderWeb {
     constructor (x,y,w){
         this.position = [x,y];
         this.width = w;
-        this.height = 0;
+        this.height = w;
         this.speed = "normal";
-        // this.smashed = false;
+
     }
 
     moveWeb(){
@@ -35,14 +35,9 @@ class SpiderWeb {
         $newWeb.style.height = "auto";
         $newWeb.style.position = "fixed";
         $section.appendChild($newWeb);
-        let rh = window.getComputedStyle($newWeb,null).getPropertyValue("height");
-        let realHeight = Number (rh.slice(rh.length-1,2));
-        this.height = Math.floor((realHeight * 100)/(window.innerHeight));
+ 
         // console.log(`web: ${this.position[0]} , ${this.position[1]}`);
         
     }
 
-    // getTorn(){
-    //     this.smashed = true;
-    // }
 }

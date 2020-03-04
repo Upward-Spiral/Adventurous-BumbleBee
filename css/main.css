@@ -1,6 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 section {
     position: relative;
@@ -52,10 +53,6 @@ button {
     height: auto;
 }
 
-/* #flower {
-    width: 70vw;
-    height: auto;
-} */
 
 #fan {
     width: 70vw;
@@ -85,7 +82,109 @@ tbody tr {
     align-items: center;
     padding-top: 20px;
     background-color: rgba(242, 215, 144, 0.45);
+    text-align: center;
 }
 
+footer {
+    position: relative;
+   
+    padding: 0;
+
+}
+
+footer div {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    width: 100vw;
+    height: 3vw;
+    color: white;
+    background-color: white;
+    border: 1px solid white;
+}
+
+footer p {
+    margin: 0;
+    height: 100%;
+}
+
+header {
+    position: relative;  
+    padding: 0;
+}
+
+header div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 40;
+    width: 100vw;
+    height: 3vw;
+    color: white;
+    background-color: white;
+    border: 1px solid white;
+}
+
+header p {
+    margin: 0;
+    height: 100%;
+}
+
+#sidebar-right {
+    position: relative;
+}
+
+#sidebar-right div {
+    position: fixed;
+    right: 0;
+    top: 20vh;
+}
+
+#sidebar-left {
+    position: relative;
+}
+
+#sidebar-left div {
+    position: fixed;
+    left: 0;
+    top: 20vh;
+}
+
+#life {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5vw;
+}
+
+#life img {
+    width: 5vw;
+    height: auto;
+}
+
+#life p {
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+#time {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5vw;
+}
+
+#time img {
+    width: 4vw;
+    height: auto;
+}
+
+#time p {
+    font-size: 1.5em;
+    font-weight: 900;
+}
 
 

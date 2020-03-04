@@ -2,10 +2,11 @@ class Flowers {
     constructor(x,y,w){
         this.position = [x,y];
         this.width = w;
-        this.height = 0;
+        this.height = w;
         this.speed = "normal";
     }
 
+    
     moveFlower(){
         switch (this.speed) {
             case "fast":
@@ -21,6 +22,7 @@ class Flowers {
     }
 
     renderFlower(){
+
         let realWidth = `${this.width}%`;
         let $section = document.querySelector("#flower")
         let $newFlower = document.createElement("img");
@@ -33,9 +35,7 @@ class Flowers {
         $newFlower.style.height = "auto";
         $newFlower.style.position = "fixed";
         $section.appendChild($newFlower);
-        let rh = window.getComputedStyle($newFlower,null).getPropertyValue("height");
-        let realHeight = Number (rh.slice(rh.length-1,2));
-        this.height = Math.floor((realHeight * 100)/(window.innerHeight));
+   
         // console.log(`flower: ${this.position[0]} , ${this.position[1]}`);
     }
 
