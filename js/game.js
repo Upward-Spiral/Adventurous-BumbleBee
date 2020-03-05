@@ -178,10 +178,17 @@ class Game {
             this.bee.life = 0;
             console.log('Bee in the fan')
         }
-        if (this.bee.life > 0 && this.rotation < 5) {
-            this.bee.renderBee();
-        } else {
+        if (this.bee.life > 0) {
+            if (this.rotation < 5){
+                this.bee.renderBee();
+            } else {
+                this.stop();
+                this.showWinScreen();
+            }
+            
+        } else{
             this.stop();
+            this.showGameOverScreen();
         }
     }
 

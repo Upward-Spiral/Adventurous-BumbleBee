@@ -190,7 +190,7 @@ header p {
 /* The Modal (background) */
 .modal {
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 2; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -200,16 +200,16 @@ header p {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
 
-  .invisible {
+.invisible {
     display: none;
-  }
+}
 
-  .visible {
-      display: block;
-  }
+.visible {
+    display: block;
+}
   
-  /* Modal Content/Box */
-  .modal-content {
+/* Modal Content/Box */
+.modal-content {
     background-color: #fefefe;
     margin: 9% auto; /* 15% from the top and centered */
     padding: 15px;
@@ -218,45 +218,44 @@ header p {
     width: 70%; /* Could be more or less, depending on screen size */
     height: auto;
     position: relative;
-  }
+}
   
   /* The Close Button */
-  .close {
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
+}
   
-  .close:hover,
-  .close:focus {
+.close:hover, .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
+}
 
-  #tombstone-img {
-      width: 25%;
-      height: auto;
-      margin-top: 7%;
-      margin-bottom: 7%;
-      margin-left: 10%;
-  }
+#tombstone-img {
+    width: 25%;
+    height: auto;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    margin-left: 10%;
+}
 
-  #lost-message, #win-message {
-      margin: 40px auto;
-      position: absolute;
-      top: 20%;
-      right: 10%;
-      width: 50%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
+#lost-message, #win-message {
+    margin: 40px auto;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-  .start-over {
+.start-over {
     margin: 10% auto;
     /* position: absolute; */
     /* bottom: 20%;
