@@ -13,6 +13,7 @@ class Game {
         this.elapsedTime = 0;
         this.bgPercent = 100;
         this.rotation = 0;
+        this.stopWatch = 0;
     }
     start(){
         var newGame = this;
@@ -22,11 +23,12 @@ class Game {
                     newGame.webs.splice(newGame.evilWebIx,1);
                     newGame.evilWebIx = -1;
                 }
+                newGame.stopWatch++;
                 newGame.renderAll();
             } else {
                 newGame.bee.getStuck();
             }
-        },100);
+        },80);
 
         this.intervalIdWebs = setInterval(function(){
             let randNum = Math.random()*100;
@@ -120,7 +122,7 @@ class Game {
         if (this.bgPercent<= 0) {
             this.bgPercent = 100;
             this.rotation++;
-        } else {
+        } else /*if ((this.stopWatch % 3) == 0)*/ {
             this.bgPercent -= 1;
         }
         this.renderBackground(this.bgPercent);
