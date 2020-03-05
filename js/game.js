@@ -38,7 +38,7 @@ class Game {
             let randChance = newGame.giveRandNum(1,10);;
             let rand1 = Math.floor(randNum);
             let rand2 = Math.round(randNum);
-            if (newGame.flowers.length <= 2) {
+            if (newGame.webs.length <= 2) {
                 if (randChance > 7){
                     let width = newGame.giveRandNum(10,20);
                     if (rand1 > 85-width){

@@ -42,9 +42,9 @@ $newGameButton.addEventListener("click",function(event){
 let $startOverButtons = document.querySelectorAll(".start-over");
 for (let i = 0; i < $startOverButtons.length; i++){
     $startOverButtons[i].addEventListener("click",function(event){
-        let $parentModal = event.closest(".modal");
+        let $parentModal = event.target.closest(".modal");
         $parentModal.setAttribute("class","modal invisible");
-        game.showFirstScreen();
+        location.reload();
         // console.log("Whenever you are ready!");
 
     });
