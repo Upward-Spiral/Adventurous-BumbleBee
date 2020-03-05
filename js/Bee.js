@@ -51,13 +51,13 @@ class Bee {
         }
 
     keepRight(){
-        if (this.position[0] > 15){
+        if (this.position[0] < 80){
             this.position[0] += 3;
         }
     }
 
     keepLeft(){
-        if (this.position[0] < 85){
+        if (this.position[0] > 20){
             this.position[0] -= 3;
         }  
     }
