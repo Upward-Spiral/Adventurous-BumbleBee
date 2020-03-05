@@ -297,10 +297,12 @@ class Game {
         let $intro = document.querySelector("#intro");
         $section.removeChild($intro);
         let $beginMessage = document.createElement("h1");
-        $beginMessage.style.color = "green";
+        $beginMessage.style.color = "black";
+        $beginMessage.style.fontSize = "3em";
+        $beginMessage.style.fontWeight = "800";
         $beginMessage.style.position = "fixed";
         $beginMessage.style.top = "30vh";
-        $beginMessage.style.left = "40vw";
+        $beginMessage.style.left = "32vw";
         $beginMessage.innerHTML = "press Enter to start";
         $section.appendChild($beginMessage);
         
