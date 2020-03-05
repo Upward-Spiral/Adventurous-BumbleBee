@@ -13,10 +13,33 @@
         </div>
     </header>
     <section>
-        <!-- <div id="BG">
-            <img src="./images/room1.png" alt="" id="img1">
-            <img src="" alt="" id="img2">
-        </div> -->
+        <div id="gameOverModal" class="modal invisible">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <img src="./images/tombstone-ZB.png" alt="" id="tombstone-img">
+              <div id="lost-message">
+                  <p>Zeebee is dead!<br></p>
+                  <button name="start-over" class="start-over">Start Over</button>
+              </div>
+              
+            </div>
+          
+        </div>
+
+        <div id="WinModal" class="modal visible">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img src="https://media.giphy.com/media/hRBZptDO0ClD72QnJ1/source.gif" alt="" id="happy-zeebee-img">
+                <div id="win-message">
+                    <p>Zeebee Survived!<br> She is the luckiest bee ever!</p>
+                    <button name="start-over" class="start-over">Start Over</button>
+                </div>
+            </div>
+        
+        </div>
 
         <div id="intro">
             <h1>Zeebee is a bumblebee, trapped in a farmhouse.<br>
@@ -104,6 +127,8 @@
     
     <!-- Image by <a href="https://pixabay.com/users/OpenClipart-Vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1298745">OpenClipart-Vectors</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1298745">Pixabay</a> -->
     
+    <!-- Image by <a href="https://pixabay.com/users/OpenClipart-Vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=151488">OpenClipart-Vectors</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=151488">Pixabay</a> -->
+
    <script src="./js/Bee.js"></script> 
    <script src="./js/flowers.js"></script>
    <script src="./js/ac-fan.js"></script>

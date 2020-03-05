@@ -12,6 +12,7 @@ class Game {
         this.intervalIdInfo = 0;
         this.elapsedTime = 0;
         this.bgPercent = 100;
+        this.rotation = 0;
     }
     start(){
         var newGame = this;
@@ -115,7 +116,8 @@ class Game {
 
         // Renders the scrolling background
         if (this.bgPercent<= 0) {
-            this.bgPercent = 100
+            this.bgPercent = 100;
+            this.rotation++;
         } else {
             this.bgPercent -= 1;
         }
@@ -176,7 +178,7 @@ class Game {
             this.bee.life = 0;
             console.log('Bee in the fan')
         }
-        if (this.bee.life > 0) {
+        if (this.bee.life > 0 && this.rotation < 5) {
             this.bee.renderBee();
         } else {
             this.stop();
@@ -265,7 +267,12 @@ class Game {
     }
 
     showLastScreen(){
+        if (this.bee.life <= 0) {
+            this.showGameOverScreen();
+        } else if (this.rotation >= 5) {
 
+        }
+        
     }
 
     showFirstScreen(){
@@ -303,14 +310,30 @@ class Game {
         $section.style.backgroundPositionY =  `${bgPercent}%,0px`;
     }
 
-
-
     giveRandNum(min,max) {
         let rand = Math.floor(Math.random()*max);
         if (rand < min) {
             rand += min;
         }
         return rand;
+    }
+
+    showGameOverScreen (){
+        this.removeBee();
+        let $modalParent = document.querySelector("#gameOverModal");
+        $modalParent.setAttribute("class","modal visible");
+    }
+
+    showWinScreen() {
+        this.removeBee();
+        let $modalParent = document.querySelector("#winModal");
+        $modalParent.setAttribute("class","modal visible");
+    }
+
+    removeBee () {
+        let $section = document.querySelector("section");
+        let $deadBee = document.querySelector("#bee");
+        $section.removeChild($deadBee);
     }
 
 }
