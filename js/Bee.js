@@ -41,9 +41,8 @@ class Bee {
     }
     
     breakFree(){
-        this.stuck = false;
-        
-        console.log("Zeebee is free!")
+        this.stuck = false; 
+        // console.log("Zeebee is free!")
     }
 
     getStuck(){
@@ -52,11 +51,15 @@ class Bee {
         }
 
     keepRight(){
-        this.position[0] += 3;
+        if (this.position[0] > 15){
+            this.position[0] += 3;
+        }
     }
 
     keepLeft(){
-        this.position[0] -= 3;
+        if (this.position[0] < 85){
+            this.position[0] -= 3;
+        }  
     }
 
     feed(){
