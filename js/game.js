@@ -114,6 +114,9 @@ class Game {
             newGame.updateGameInfo(newGame.bee.life,newGame.elapsedTime)
         },1000);
 
+        playEffect($bgSound);
+        $bgSound.loop = true;
+
     }
 
     renderAll(){
@@ -183,16 +186,16 @@ class Game {
             console.log('Bee in the fan')
         }
         if (this.bee.life > 0) {
-            if (this.rotation < 4){
+            if (this.rotation < 5){
                 this.bee.renderBee();
             } else {
                 this.stop();
-                this.showWinScreen();
+                // this.showWinScreen();
             }
             
         } else{
             this.stop();
-            this.showGameOverScreen();
+            // this.showGameOverScreen();
         }
     }
 
@@ -281,7 +284,7 @@ class Game {
         if (this.bee.life <= 0) {
             this.showGameOverScreen();
         } else if (this.rotation >= 5) {
-
+            this.showWinScreen();
         }
         
     }
@@ -305,6 +308,7 @@ class Game {
         $beginMessage.style.left = "32vw";
         $beginMessage.innerHTML = "press Enter to start";
         $section.appendChild($beginMessage);
+        $introSound.pause();
         
     }
 
@@ -335,12 +339,16 @@ class Game {
         this.removeBee();
         let $modalParent = document.querySelector("#gameOverModal");
         $modalParent.setAttribute("class","modal visible");
+        pauseEffect($bgSound);
+        playEffect($loseSound);
     }
 
     showWinScreen() {
         this.removeBee();
         let $modalParent = document.querySelector("#winModal");
         $modalParent.setAttribute("class","modal visible");
+        pauseEffect($bgSound);
+        playEffect($winSound);
     }
 
     removeBee () {

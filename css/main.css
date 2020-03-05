@@ -295,3 +295,11 @@ header p {
     color: green;
 }
 
+#intro-music, 
+#background-music, 
+#crushed-effect, 
+#lose-music, 
+#win-sound {
+    display: none;
+}
+

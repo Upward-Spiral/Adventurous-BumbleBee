@@ -24,4 +24,17 @@ function twoDigitsNumber(timeElement) {
     return twoDgtTime;
 }
 
+var $bgSound = document.getElementById("background-music");
+var $winSound = document.getElementById("win-sound");
+var $loseSound = document.getElementById("lose-music");
+var $introSound = document.getElementById("intro-music");
+function playEffect($effectNode){
+  $effectNode.play();
+}
+
+function pauseEffect($effectNode){
+  $effectNode.pause();
+}
+
+
 

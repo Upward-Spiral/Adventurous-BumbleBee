@@ -6,7 +6,7 @@
     <title>Bee Game</title>
     <link rel="stylesheet" href="./css/main.css">
 </head>
-<body>
+<body onload="playEffect($introSound)">
     <header>
         <div>
             <p>copyright</p>
@@ -119,6 +119,12 @@
             <p>copyright</p>
         </div>
     </footer>
+
+    <audio id="intro-music" src="./audios/Intro.mp3" preload="auto" loop></audio>
+    <audio id="background-music" src="./audios/zeebee-buzzing.mp3"></audio>
+    <audio id="crushed-effect" src=""></audio>
+    <audio id="lose-music" src="./audios/zeebee-dead.mp3"></audio>
+    <audio id="win-sound" src="./audios/win.mp3"></audio>
     
 
     <!-- Image by <a href="https://pixabay.com/users/Clker-Free-Vector-Images-3736/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=307589">Clker-Free-Vector-Images</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=307589">Pixabay</a> -->

@@ -42,11 +42,13 @@ class Bee {
     
     breakFree(){
         this.stuck = false; 
+        playEffect($bgSound);
         // console.log("Zeebee is free!")
     }
 
     getStuck(){
             this.life -= 1;
+            pauseEffect($bgSound);
 
         }
 
