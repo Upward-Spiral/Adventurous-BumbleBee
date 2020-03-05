@@ -15,6 +15,7 @@ section {
 
 div {
     position: relative;
+    back
 }
 
 button {
@@ -186,5 +187,19 @@ header p {
     font-size: 1.5em;
     font-weight: 900;
 }
+
+/* #BG {
+    position: relative;
+    width: 100%;
+
+} */
+/* 
+#img1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: ;
+} */
 
 

@@ -9,6 +9,8 @@ class Game {
         this.intervalIdWebs = 0;
         this.intervalIdFlowers = 0;
         this.intervalIdFans = 0;
+        this.intervalIdInfo = 0;
+        this.elapsedTime = 0;
     }
     start(){
         var newGame = this;
@@ -100,6 +102,11 @@ class Game {
             }
             
         },700);
+
+        this.intervalIdInfo = setInterval(function(){
+            newGame.elapsedTime++;
+            newGame.updateGameInfo(newGame.bee.life,newGame.elapsedTime)
+        },1000);
 
     }
 
@@ -243,6 +250,7 @@ class Game {
         clearInterval(this.intervalIdWebs);
         clearInterval(this.intervalIdFlowers);
         clearInterval(this.intervalIdFans);
+        clearInterval(this.intervalIdInfo);
         this.showLastScreen();
 
     }
@@ -253,8 +261,11 @@ class Game {
 
     showFirstScreen(){
         let $section = document.querySelector("section");
-        $section.style.backgroundImage = "none";
-        $section.style.backgroundColor = "burlywood";
+        $section.style.backgroundImage = "url('../images/background.png')";
+        $section.style.backgroundOrigin = "border-box";
+        $section.style.backgroundPositionY = "100%, 0px";
+        $section.style.backgroundSize = "cover";
+        // $section.style.backgroundColor = "burlywood";
         let $buttonDiv = $section.querySelector("#btn");
         $section.removeChild($buttonDiv);
         let $intro = document.querySelector("#intro");
@@ -268,6 +279,21 @@ class Game {
         $section.appendChild($beginMessage);
         
     }
+
+    updateGameInfo(life,time){
+        let $lifePanel = document.querySelector("#life span");
+        let $minPanel = document.querySelector("#minutes");
+        let $secPanel = document.querySelector("#seconds");
+        $minPanel.innerHTML = twoDigitsNumber(getMinutes(time));
+        $secPanel.innerHTML =twoDigitsNumber(getSeconds(time));
+        $lifePanel.innerHTML = life;
+    }
+
+    renderBackground(){
+
+    }
+
+
 
     giveRandNum(min,max) {
         let rand = Math.floor(Math.random()*max);

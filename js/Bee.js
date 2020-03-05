@@ -61,7 +61,7 @@ class Bee {
 
     feed(){
         this.feeding = true;
-        this.life += 10;
+        this.life += 3;
     }
 
     getCrushed(){
