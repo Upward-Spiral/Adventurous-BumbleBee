@@ -26,7 +26,7 @@ class Game {
             } else {
                 newGame.bee.getStuck();
             }
-        },200);
+        },100);
 
         this.intervalIdWebs = setInterval(function(){
             let randNum = Math.random()*100;
