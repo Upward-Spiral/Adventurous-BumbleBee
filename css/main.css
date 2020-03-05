@@ -20,10 +20,11 @@ div {
 
 #newGame-btn {
     position: fixed;
-    top: 60%;
+    top: 70%;
     left: 45%;
     width: 120px;
     height: 50px;
+    border-radius: 2px;
     
 }
 
@@ -36,7 +37,7 @@ div {
     display: unset;
     position: fixed;
     top: 70vh;
-    left: 43vw;
+    left: 55vw;
     width: 10%;
     height: auto;
 }
@@ -64,6 +65,13 @@ div {
 table, th, td {
     padding: 10px 20px;
     text-align: center;
+    font-weight: 900;
+    
+}
+
+th, td {
+    background-color: rgba(201, 142, 65, 0.75);
+    border-radius: 7px;
 }
 
 tbody tr {
@@ -83,8 +91,9 @@ tbody tr {
     justify-content: center;
     align-items: center;
     padding-top: 20px;
-    background-color: rgba(136, 177, 71, 0.55);
+    background-color: rgba(177, 143, 71, 0.65);
     text-align: center;
+    border-radius: 10px;
 }
 
 footer {

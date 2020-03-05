@@ -10,13 +10,13 @@ class Fan {
     moveFans(){
         switch (this.speed) {
             case "fast":
-                this.position[1] += 7;
+                this.position[1] += 8;
                 break;
             case "slow":
                 this.position[1] += 3;
                 break;
             default:
-                this.position[1] += 5;
+                this.position[1] += 6;
         }
         
     }

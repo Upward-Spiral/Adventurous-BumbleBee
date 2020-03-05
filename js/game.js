@@ -30,8 +30,8 @@ class Game {
 
         this.intervalIdWebs = setInterval(function(){
             let randNum = Math.random()*100;
-            if (randNum < 20) {
-                randNum += 20;
+            if (randNum < 15) {
+                randNum += 15;
             } else if (randNum > 80) {
                 randNum -= 20;
             }
@@ -39,7 +39,7 @@ class Game {
             let rand1 = Math.floor(randNum);
             let rand2 = Math.round(randNum);
             if (newGame.webs.length <= 2) {
-                if (randChance > 7){
+                if (randChance > 6){
                     let width = newGame.giveRandNum(10,20);
                     if (rand1 > 85-width){
                             rand1 = 85-width;
@@ -69,8 +69,8 @@ class Game {
                 if (randChance > 6){
                     let width = newGame.giveRandNum(10,20);
                     if (rand1 > 85-width){
-                            rand1 = 85-width;
-                        }
+                        rand1 = 85-width;
+                    }
                     if (rand2 == rand1){
                         newGame.flowers.push(new Flowers(rand1,-20,width));
                     }else {
@@ -82,23 +82,25 @@ class Game {
         },650);
 
         this.intervalIdFans = setInterval(function(){
-            let randNum = Math.random()*8;
-            if (randNum < 2) {
-                randNum += 2;
-            } 
+            let randNum = Math.random()*100;
+            if (randNum < 20) {
+                randNum += 20;
+            } else if (randNum > 80) {
+                randNum -= 20;
+            }
             let randChance = newGame.giveRandNum(1,8);
             let rand1 = Math.floor(randNum);
             let rand2 = Math.round(randNum);
             if (newGame.fans.length == 0) {
-                if (rand1 > 6){
-                    let width = 15;
+                if (rand1 > 5){
+                    let width = 25;
                     if (rand1 > 85-width){
                         rand1 = 85-width;
                     }
                     if (rand2 == rand1) {
-                        newGame.fans.push(new Fan(40,-20,15));
+                        newGame.fans.push(new Fan(rand1,-20,width));
                     } else {
-                        newGame.fans.push(new Fan(70,-20,15));
+                        newGame.fans.push(new Fan(rand1,-20,width));
                     }   
                 };
             }
@@ -179,7 +181,7 @@ class Game {
             console.log('Bee in the fan')
         }
         if (this.bee.life > 0) {
-            if (this.rotation < 5){
+            if (this.rotation < 4){
                 this.bee.renderBee();
             } else {
                 this.stop();
