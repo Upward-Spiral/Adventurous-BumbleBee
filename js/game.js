@@ -11,6 +11,7 @@ class Game {
         this.intervalIdFans = 0;
         this.intervalIdInfo = 0;
         this.elapsedTime = 0;
+        this.bgPercent = 100;
     }
     start(){
         var newGame = this;
@@ -111,6 +112,14 @@ class Game {
     }
 
     renderAll(){
+
+        // Renders the scrolling background
+        if (this.bgPercent<= 0) {
+            this.bgPercent = 100
+        } else {
+            this.bgPercent -= 1;
+        }
+        this.renderBackground(this.bgPercent);
         
         // Renders Webs ----------------------
         let $websDiv = document.querySelector("#web");
@@ -263,9 +272,8 @@ class Game {
         let $section = document.querySelector("section");
         $section.style.backgroundImage = "url('../images/background.png')";
         $section.style.backgroundOrigin = "border-box";
-        $section.style.backgroundPositionY = "100%, 0px";
+        $section.style.backgroundPositionY = "100%,0px";
         $section.style.backgroundSize = "cover";
-        // $section.style.backgroundColor = "burlywood";
         let $buttonDiv = $section.querySelector("#btn");
         $section.removeChild($buttonDiv);
         let $intro = document.querySelector("#intro");
@@ -289,8 +297,10 @@ class Game {
         $lifePanel.innerHTML = life;
     }
 
-    renderBackground(){
+    renderBackground(bgPercent){
 
+        let $section = document.querySelector("section");
+        $section.style.backgroundPositionY =  `${bgPercent}%,0px`;
     }
 
 

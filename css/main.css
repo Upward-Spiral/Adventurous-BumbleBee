@@ -7,8 +7,9 @@ section {
     position: relative;
     background-image: url('../images/summer-country-cottage.jpg');
     width: 70vw;
-    height: 90vh;
+    height: 675px;
     background-repeat: no-repeat;
+    /* background-position-y: ; */
     background-size: cover;
     margin: 3% auto;
 }
