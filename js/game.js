@@ -306,6 +306,9 @@ class Game {
         $beginMessage.style.position = "fixed";
         $beginMessage.style.top = "30vh";
         $beginMessage.style.left = "32vw";
+        $beginMessage.style.padding = "30px";
+        $beginMessage.style.backgroundColor = "rgba(201, 142, 65, 0.75)";
+        $beginMessage.style.borderRadius = "5px";
         $beginMessage.innerHTML = "press Enter to start";
         $section.appendChild($beginMessage);
         $introSound.pause();
