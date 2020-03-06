@@ -25,8 +25,10 @@ class Game {
                 }
                 newGame.stopWatch++;
                 newGame.renderAll();
-            } else {
+            } else if (newGame.bee.life > 0) { 
                 newGame.bee.getStuck();
+            } else {
+                newGame.stop();
             }
         },80);
 
@@ -176,7 +178,8 @@ class Game {
         if (this.collideBee(this.webs) >= 0) {
             this.evilWebIx = this.collideBee(this.webs);
             this.bee.stuck = true;
-            this.bee.stuckLevel = 10;            
+            this.bee.stuckLevel = 10; 
+            playEffect($stuckSound);           
         } else if (this.collideBee(this.flowers) >= 0) {
             this.bee.feed();
             console.log('Bee feed')

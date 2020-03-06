@@ -28,6 +28,9 @@ var $bgSound = document.getElementById("background-music");
 var $winSound = document.getElementById("win-sound");
 var $loseSound = document.getElementById("lose-music");
 var $introSound = document.getElementById("intro-music");
+var $stuckSound = document.getElementById("stuck-sound")
+
+
 function playEffect($effectNode){
   $effectNode.play();
 }

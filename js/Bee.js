@@ -33,7 +33,8 @@ class Bee {
     resist(){
         if (this.stuckLevel > 0) {
             this.stuckLevel -= 2;
-            console.log(`Stuck Level = ${this.stuckLevel}`)
+            playEffect("tearing-sound");
+            // console.log(`Stuck Level = ${this.stuckLevel}`)
         } else {
             this.breakFree();
         }
@@ -49,7 +50,6 @@ class Bee {
     getStuck(){
             this.life -= 1;
             pauseEffect($bgSound);
-
         }
 
     keepRight(){
