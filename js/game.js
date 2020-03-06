@@ -15,7 +15,7 @@ class Game {
         this.rotation = 0;
         this.stopWatch = 0;
     }
-    start(){
+    start(){   // Starts the intervals which call renderAll() and create random obstacles, also plays background sound
         var newGame = this;
         this.intervalIdBee = setInterval(function(){
             if (newGame.bee.stuck == false) {
@@ -121,7 +121,7 @@ class Game {
 
     }
 
-    renderAll(){
+    renderAll(){  //  Renders everything and handles background loop, collisions, and win/lose conditions
 
         // Renders the scrolling background
         if (this.bgPercent<= 0) {
@@ -202,7 +202,7 @@ class Game {
         }
     }
 
-    collideBee(elements){
+    collideBee(elements){  // Detects collision / returns the index or -1
         let beeNodePosition = [this.bee.position[0]+5,this.bee.position[1]+5];
         let xBee = beeNodePosition[0];
         let yBee = beeNodePosition[1];
@@ -217,7 +217,7 @@ class Game {
         return result;    
     }
 
-    pushedByWind(){
+    pushedByWind(){  // Emulates the effect of the air flow on the bee
         let beeNodePosition = [this.bee.position[0]+5,this.bee.position[1]+5];
         let xBee = beeNodePosition[0];
         let yBee = beeNodePosition[1];
@@ -230,7 +230,7 @@ class Game {
         };  
     }
 
-    slowDown() {
+    slowDown() {  // Slows down the game per user's input
 
         if (this.webs.length > 0) {
             for (let i=0; i<this.webs.length;i++) {
@@ -253,7 +253,7 @@ class Game {
 
     }
 
-    accelerate(){
+    accelerate(){  // Accelerates the game per user's input
         
         if (this.webs.length > 0) {
             for (let i=0; i<this.webs.length;i++) {
@@ -273,7 +273,7 @@ class Game {
 
     }
 
-    stop(){
+    stop(){  // Stops the game, clears intervals, and calls the function that renders the last screen
         clearInterval(this.intervalIdBee);
         clearInterval(this.intervalIdWebs);
         clearInterval(this.intervalIdFlowers);
@@ -283,7 +283,7 @@ class Game {
 
     }
 
-    showLastScreen(){
+    showLastScreen(){ // Detects win/lose situation and calls the related function
         if (this.bee.life <= 0) {
             this.showGameOverScreen();
         } else if (this.rotation >= 5) {
@@ -292,7 +292,7 @@ class Game {
         
     }
 
-    showFirstScreen(){
+    showFirstScreen(){  // Clears the intro screen and renders the first(and only!) game screen
         let $section = document.querySelector("section");
         $section.style.backgroundImage = "url('../images/background.png')";
         $section.style.backgroundOrigin = "border-box";
@@ -318,7 +318,7 @@ class Game {
         
     }
 
-    updateGameInfo(life,time){
+    updateGameInfo(life,time){ // Updates the information on sidebars (life and time)
         let $lifePanel = document.querySelector("#life span");
         let $minPanel = document.querySelector("#minutes");
         let $secPanel = document.querySelector("#seconds");
@@ -327,21 +327,13 @@ class Game {
         $lifePanel.innerHTML = life;
     }
 
-    renderBackground(bgPercent){
+    renderBackground(bgPercent){ // renders game's scrolling background
 
         let $section = document.querySelector("section");
         $section.style.backgroundPositionY =  `${bgPercent}%,0px`;
     }
 
-    giveRandNum(min,max) {
-        let rand = Math.floor(Math.random()*max);
-        if (rand < min) {
-            rand += min;
-        }
-        return rand;
-    }
-
-    showGameOverScreen (){
+    showGameOverScreen (){ // Renders the Game Over screen/sound
         this.removeBee();
         let $modalParent = document.querySelector("#gameOverModal");
         $modalParent.setAttribute("class","modal visible");
@@ -349,7 +341,7 @@ class Game {
         playEffect($loseSound);
     }
 
-    showWinScreen() {
+    showWinScreen() {  // Renders the Win screen/sound
         this.removeBee();
         let $modalParent = document.querySelector("#winModal");
         $modalParent.setAttribute("class","modal visible");
@@ -357,10 +349,18 @@ class Game {
         playEffect($winSound);
     }
 
-    removeBee () {
+    removeBee () { // Removes the bee after it's dead
         let $section = document.querySelector("section");
         let $deadBee = document.querySelector("#bee");
         $section.removeChild($deadBee);
     }
-
+    
+    giveRandNum(min,max) { // take a minimum and a maximum and returns a random number in between
+        let rand = Math.floor(Math.random()*max);
+        if (rand < min) {
+            rand += min;
+        }
+        return rand;
+    }
 }
+

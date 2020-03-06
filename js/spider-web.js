@@ -7,7 +7,7 @@ class SpiderWeb {
 
     }
 
-    moveWeb(){
+    moveWeb(){  // Adjusts web's position by setting the relevant properties
         switch (this.speed) {
             case "fast":
                 this.position[1] += 6;
@@ -21,7 +21,7 @@ class SpiderWeb {
          
     }
 
-    renderWeb(){
+    renderWeb(){  // Renders web
 
         let realWidth = `${this.width}%`;
         let $section = document.querySelector("#web")

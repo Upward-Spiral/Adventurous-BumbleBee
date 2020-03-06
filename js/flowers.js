@@ -7,7 +7,7 @@ class Flowers {
     }
 
     
-    moveFlower(){
+    moveFlower(){  // Adjusts flower's position by setting the relevant properties
         switch (this.speed) {
             case "fast":
                 this.position[1] += 6;
@@ -21,7 +21,7 @@ class Flowers {
         
     }
 
-    renderFlower(){
+    renderFlower(){  // Renders flower
 
         let realWidth = `${this.width}%`;
         let $section = document.querySelector("#flower")
@@ -38,8 +38,5 @@ class Flowers {
    
         // console.log(`flower: ${this.position[0]} , ${this.position[1]}`);
     }
-
-    gettasted(){
-
-    }
+    
 }

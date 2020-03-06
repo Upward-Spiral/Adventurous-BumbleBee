@@ -7,7 +7,7 @@ class Fan {
         this.speed = "normal";
     }
 
-    moveFans(){
+    moveFans(){  // Adjusts fan's position by setting the relevant properties
         switch (this.speed) {
             case "fast":
                 this.position[1] += 6;
@@ -21,8 +21,7 @@ class Fan {
         
     }
 
-    renderFans(){
-        
+    renderFans(){  // Renders fans      
         let realWidth = `${this.width}%`;
         let $section = document.querySelector("#fan")
         let $newFan = document.createElement("img");
@@ -36,6 +35,6 @@ class Fan {
         $newFan.style.position = "fixed";
         $section.appendChild($newFan);
         // console.log(`Fan: ${this.position[0]} , ${this.position[1]}`);
-
     }
+
 }

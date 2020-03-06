@@ -9,7 +9,7 @@ class Bee {
         this.stuckedIn = 0;
     }
     
-    renderBee(){
+    renderBee(){ // Renders bee and handles its image change while being stuck
         let bumbleBee = this;
         let $bee = document.querySelector("#bee-img");
         if (bumbleBee.stuck) {
@@ -29,51 +29,49 @@ class Bee {
 
     }
 
-
-    resist(){
+    resist(){  // Emulates the bee's resistance against the air flow of the fans
         if (this.stuckLevel > 0) {
             this.stuckLevel -= 2;
             playEffect("tearing-sound");
             // console.log(`Stuck Level = ${this.stuckLevel}`)
         } else {
             this.breakFree();
-        }
-        
+        }  
     }
     
-    breakFree(){
+    breakFree(){  // Sets the stuck property and plays the relevant sound
         this.stuck = false; 
         playEffect($bgSound);
         // console.log("Zeebee is free!")
     }
 
-    getStuck(){
+    getStuck(){  // Decreases life and plays relevant sound when the bee is stuck in a web
             this.life -= 1;
             pauseEffect($bgSound);
         }
 
-    keepRight(){
+    keepRight(){  // Applies user's input (right arrow key)
         if (this.position[0] < 72){
             this.position[0] += 3;
         }
     }
 
-    keepLeft(){
+    keepLeft(){  // Applies user's input (left arrow key)
         if (this.position[0] > 15){
             this.position[0] -= 3;
         }  
     }
 
-    feed(){
+    feed(){  //  Increases life and sets the feeding property
         this.feeding = true;
         this.life += 3;
     }
 
-    getCrushed(){
+    getCrushed(){ // Sets life to zero
         this.life = 0;
     }
 
-    getWounded(){
+    getWounded(){  // Decreases life and plays relevant sound when the bee hits the wall
         this.life -= 20;
 
     }
